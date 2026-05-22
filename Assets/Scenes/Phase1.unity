@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 652b6d1c87a48fa4aa385a2d202158fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  featureName: MonShaderGraph
+  featureName: FullScreenPassRendererFeature
   enableFeature: 1
 --- !u!4 &561659271
 Transform:
