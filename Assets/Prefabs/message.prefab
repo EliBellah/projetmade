@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8004821806712354017}
   - component: {fileID: 2863639811418714272}
   m_Layer: 0
-  m_Name: corbeille 1
+  m_Name: message
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993831397169220273}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000067020075, y: -0.7071068, z: 0.7071068, w: 0.000000082124906}
+  m_LocalRotation: {x: -0.8406036, y: -0.2266162, z: -0.42107522, w: -0.25441393}
   m_LocalPosition: {x: -3.762, y: 1.833, z: -0.12}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 166.298, y: -417.923, z: -37.783997}
 --- !u!33 &2820090683279608991
 MeshFilter:
   m_ObjectHideFlags: 0
