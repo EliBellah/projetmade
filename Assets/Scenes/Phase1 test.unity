@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CursorObject
       objectReference: {fileID: 0}
+    - target: {fileID: 8891643686190752487, guid: 3473724e53c94994caacee8439057199, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -286,9 +290,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9201096732181350519, guid: caeb7039bc703b74097aea7202a4c570, type: 3}
     - target: {fileID: -5447986957568859748, guid: 107fa8794b2c3674ebc6e8efb333919a, type: 3}
+      propertyPath: delaiAvantChoix
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5447986957568859748, guid: 107fa8794b2c3674ebc6e8efb333919a, type: 3}
       propertyPath: porteSemiOuverte
       value: 
       objectReference: {fileID: 2800000, guid: eab39b73cbcf6eb47828512b378d9e53, type: 3}
+    - target: {fileID: -5447986957568859748, guid: 107fa8794b2c3674ebc6e8efb333919a, type: 3}
+      propertyPath: FenetreChoixJoueur
+      value: 
+      objectReference: {fileID: 1115322668}
     - target: {fileID: 3335721886981677299, guid: 107fa8794b2c3674ebc6e8efb333919a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.02
@@ -482,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ccd7f48ba494e4a9a800aab3eee161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Canvas: {fileID: 0}
+  Canvas: {fileID: 1115322668}
 --- !u!4 &412739682
 Transform:
   m_ObjectHideFlags: 0
@@ -515,7 +527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &561659270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,7 +596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &577336506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1295,7 +1307,7 @@ GameObject:
   - component: {fileID: 1115322669}
   - component: {fileID: 1115322673}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: FenetreChoixJoueur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1399,7 +1411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ccd7f48ba494e4a9a800aab3eee161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Canvas: {fileID: 0}
+  Canvas: {fileID: 1115322668}
 --- !u!1 &1244203669 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8862356275551253901, guid: 107fa8794b2c3674ebc6e8efb333919a, type: 3}
