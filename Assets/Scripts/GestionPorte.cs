@@ -1,13 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GestionPorte : MonoBehaviour
 {
     [Header("Textures")]
-    public Texture porteFermee;
-    public Texture porteSemiOuverte;
-    public Texture porteOuverte;
+    public Texture[] textures = new Texture[3]; // 0=Fermee 1=SemiOuverte 2=Ouverte
 
     [Header("Composants")]
     public Renderer meshRenderer;
@@ -16,59 +13,45 @@ public class GestionPorte : MonoBehaviour
     public GameObject fenetrePrefab;
     public GameObject FenetreChoixJoueur;
 
-    [Header("Delai")]
+    [Header("Timers")]
     public float delaiAvantChoix = 2f;
-    public float tempsLimiteOuverte = 5f; // ← temps max porte ouverte
+    public float tempsLimiteOuverte = 5f;
 
     private int clicCount = 0;
     private int fermeturesCount = 0;
-    private int fermeturesMax = 2;
     private GameObject fenetreInstance;
-    private Coroutine timerPorte; // ← référence au timer
+    private Coroutine timerPorte;
+    private bool porteVerrouilee = false;
 
-    public enum EtatPorte { Fermee, SemiOuverte, Ouverte }
-    public EtatPorte etatActuel = EtatPorte.Fermee;
-
-    void Start()
-    {
-        SetEtat(EtatPorte.Fermee);
-    }
+    void Start() => AppliquerTexture(0);
 
     void OnMouseEnter()
     {
-        if (etatActuel == EtatPorte.Fermee)
-            meshRenderer.material.mainTexture = porteSemiOuverte;
+        if (!porteVerrouilee && clicCount % 2 == 0)
+            AppliquerTexture(1);
     }
 
     void OnMouseExit()
     {
-        if (etatActuel == EtatPorte.Fermee)
-            meshRenderer.material.mainTexture = porteFermee;
+        if (!porteVerrouilee && clicCount % 2 == 0)
+            AppliquerTexture(0);
     }
 
     void OnMouseDown()
     {
-        if (FenetreChoixJoueur.activeSelf) return;
+        if (porteVerrouilee || FenetreChoixJoueur.activeSelf) return;
 
         clicCount++;
 
-        if (clicCount == 1 || clicCount == 3)
+        if (clicCount % 2 == 1) // impair = ouvrir
         {
-            SetEtat(EtatPorte.Ouverte);
+            AppliquerTexture(2);
             fenetreInstance = Instantiate(fenetrePrefab);
-
-            // Lance le timer — ferme auto si pas cliqué
             timerPorte = StartCoroutine(FermerAuto());
         }
-        else if (clicCount == 2 || clicCount == 4)
+        else // pair = fermer
         {
-            // Annule le timer si le joueur ferme manuellement
-            if (timerPorte != null)
-            {
-                StopCoroutine(timerPorte);
-                timerPorte = null;
-            }
-
+            if (timerPorte != null) StopCoroutine(timerPorte);
             FermerPorte();
         }
     }
@@ -76,27 +59,19 @@ public class GestionPorte : MonoBehaviour
     IEnumerator FermerAuto()
     {
         yield return new WaitForSeconds(tempsLimiteOuverte);
-        Debug.Log("Temps écoulé ! Fermeture automatique.");
-        clicCount++; // simule un clic de fermeture
+        clicCount++;
         FermerPorte();
     }
 
     void FermerPorte()
     {
-        fermeturesCount++;
-        SetEtat(EtatPorte.Fermee);
+        AppliquerTexture(0);
+        if (fenetreInstance != null) Destroy(fenetreInstance);
 
-        if (fenetreInstance != null)
+        if (++fermeturesCount >= 2)
         {
-            Destroy(fenetreInstance);
-            fenetreInstance = null;
-        }
-
-        if (fermeturesCount >= fermeturesMax)
-        {
+            porteVerrouilee = true;
             StartCoroutine(OuvrirChoixApresDelai());
-            clicCount = 0;
-            fermeturesCount = 0;
         }
     }
 
@@ -106,21 +81,5 @@ public class GestionPorte : MonoBehaviour
         FenetreChoixJoueur.SetActive(true);
     }
 
-    public void SetEtat(EtatPorte etat)
-    {
-        etatActuel = etat;
-
-        switch (etat)
-        {
-            case EtatPorte.Fermee:
-                meshRenderer.material.mainTexture = porteFermee;
-                break;
-            case EtatPorte.SemiOuverte:
-                meshRenderer.material.mainTexture = porteSemiOuverte;
-                break;
-            case EtatPorte.Ouverte:
-                meshRenderer.material.mainTexture = porteOuverte;
-                break;
-        }
-    }
+    void AppliquerTexture(int index) => meshRenderer.material.mainTexture = textures[index];
 }
