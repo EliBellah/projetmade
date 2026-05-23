@@ -17,7 +17,7 @@ public class OpenOnClick : MonoBehaviour
     void Update()
     {
 
-        UnityEngine.Debug.Log("pipicaca");
+       
     }
 
         void OnMouseDown()

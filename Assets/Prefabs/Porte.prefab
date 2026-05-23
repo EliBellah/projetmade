@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7941430487739200357}
   - component: {fileID: 504288900160814657}
   - component: {fileID: 8480544464639920714}
-  - component: {fileID: 512250090285183070}
+  - component: {fileID: -5447986957568859748}
   m_Layer: 0
   m_Name: Porte
   m_TagString: Untagged
@@ -107,7 +107,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &512250090285183070
+--- !u!114 &-5447986957568859748
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,8 +116,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8862356275551253901}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37eb3278f8683684c82589356be10093, type: 3}
+  m_Script: {fileID: 11500000, guid: addcca3d226c2714abbf7a8f080b11f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  porte: {fileID: 8862356275551253901}
-  fenetre: {fileID: 6192971903380303908, guid: 61eaa30fbd0a8564db46d34d12bde477, type: 3}
+  porteFermee: {fileID: 0}
+  porteSemiOuverte: {fileID: 0}
+  porteOuverte: {fileID: 0}
+  meshRenderer: {fileID: 0}
+  fenetrePrefab: {fileID: 0}
+  canvas: {fileID: 0}
+  ouverturesMax: 2
+  etatActuel: 0
