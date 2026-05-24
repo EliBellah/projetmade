@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 22611868655760724}
   - component: {fileID: 8811888888176495898}
   m_Layer: 0
-  m_Name: MainFenetre
+  m_Name: CadreJeu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

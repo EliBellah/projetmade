@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4116776997757952893}
   - component: {fileID: 2529212412966494435}
   - component: {fileID: 4081348662077904857}
+  - component: {fileID: 5097913067989082963}
   m_Layer: 0
   m_Name: Fenetre
   m_TagString: Untagged
@@ -106,3 +107,28 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &5097913067989082963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9201096732181350519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154f48e492237fa42a9a962a814ce1c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imagesNormales:
+  - texture: {fileID: 2800000, guid: a902295a7742a3f4d838adb3de2f9de8, type: 3}
+  - texture: {fileID: 2800000, guid: 45b5e9bffd1cd0b42af1a5c656151fc4, type: 3}
+  anomaliesFaciles:
+  - texture: {fileID: 2800000, guid: 223ccb1313efd7549887d67306c70713, type: 3}
+  - texture: {fileID: 2800000, guid: bd3294a937062d14ba72bbdb14250b24, type: 3}
+  anomaliesMoyennes:
+  - texture: {fileID: 2800000, guid: 3ab1af92973f9624fa5895e492bcaf82, type: 3}
+  - texture: {fileID: 2800000, guid: 32109bf3b4e13b44ea859ded2565b240, type: 3}
+  anomaliesDifficiles:
+  - texture: {fileID: 2800000, guid: 3fbc490960d66ae40925e6337ff66440, type: 3}
+  - texture: {fileID: 2800000, guid: f3ef9c470786b2649994d86d0bae0a82, type: 3}
+  meshRenderer: {fileID: 2529212412966494435}

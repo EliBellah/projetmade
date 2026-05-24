@@ -5,80 +5,92 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [Header("Porte")]
-    public List<GameObject> Porte; // glisse tes 6 Porte ici dans l'Inspector
-    public int PorteActives = 1;   // commence avec 1 porte
+    [Header("Portes")]
+    public List<GameObject> Porte;
+    public int PorteActives = 1;
     public int PorteMax = 6;
 
     [Header("Anomalie")]
-    public bool anomaliePresente = false; // tu gères ça selon ta scène
+    public bool anomaliePresente = false;
 
-    void Awake()
+    [Header("Difficulte par nombre de portes")]
+    public int seuilMoyen = 3;
+    public int seuilDifficile = 4;
+
+    void Awake() => Instance = this;
+
+    void Start() => MettreAJourPorte();
+
+    public string GetNiveauDifficulte()
     {
-        Instance = this;
+        if (PorteActives >= seuilDifficile) return "difficile";
+        if (PorteActives >= seuilMoyen) return "moyen";
+        return "facile";
     }
 
-    void Start()
-    {
-        MettreAJourPorte();
-    }
-
-    // Le joueur dit "non"
     public void JoueurDitNon()
     {
-        if (anomaliePresente)
+        Debug.Log("anomaliePresente = " + anomaliePresente);
+        if (!anomaliePresente)
         {
-            // Joueur a tort — anomalie manquée
-            Debug.Log("Mauvais choix ! Anomalie manquée.");
-            ResetPorte();
-        }
-        else
-        {
-            // Joueur a raison — on avance
             Debug.Log("Correct ! Une porte de plus.");
             PorteActives++;
 
             if (PorteActives > PorteMax)
             {
                 PorteActives = PorteMax;
-                Debug.Log("Maximum atteint !");
+                Debug.Log("Maximum atteint ! Victoire !");
             }
 
             MettreAJourPorte();
         }
+        else
+        {
+            Debug.Log("Mauvais choix ! Anomalie manquée.");
+            ResetPorte();
+        }
     }
 
-    // Le joueur dit "Il y a une anomalie"
     public void JoueurDitOui()
     {
+        Debug.Log("anomaliePresente = " + anomaliePresente);
         if (anomaliePresente)
         {
-            // Joueur a raison
             Debug.Log("Correct ! Anomalie trouvée.");
-            MettreAJourPorte(); // on garde le même nombre
+            PorteActives++;
+
+            if (PorteActives > PorteMax)
+            {
+                PorteActives = PorteMax;
+                Debug.Log("Maximum atteint ! Victoire !");
+            }
+
+            MettreAJourPorte();
         }
         else
         {
-            // Joueur a tort
             Debug.Log("Mauvais choix ! Pas d'anomalie.");
             ResetPorte();
         }
     }
 
-    // Remet à 1 porte si erreur
     void ResetPorte()
     {
         PorteActives = 1;
         MettreAJourPorte();
+
+        foreach (GameObject porteObj in Porte)
+        {
+            GestionPorte gestion = porteObj.GetComponent<GestionPorte>();
+            if (gestion != null) gestion.ResetPorte();
+        }
+
         Debug.Log("Retour à 1 porte.");
     }
 
-    // Active/désactive les Porte selon le nombre
     void MettreAJourPorte()
     {
         for (int i = 0; i < Porte.Count; i++)
-        {
             Porte[i].SetActive(i < PorteActives);
-        }
     }
 }
