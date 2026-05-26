@@ -10,48 +10,48 @@ public class GestionPorte : MonoBehaviour
     public Renderer meshRenderer;
 
     [Header("Prefabs et Canvas")]
-    public GameObject fenetrePrefab;
+    public GameObject Fenetre;
     public GameObject FenetreChoixJoueur;
 
-    [Header("Timers")]
-    public float delaiAvantChoix = 2f;
-    public float tempsLimiteOuverte = 5f;
+    [Header("Timers")] // temps avant affichage automatique de la fenetre a choix 
+    public float delaiAvantChoix = 20f;   //2f et 5f
+    public float tempsLimiteOuverte = 50f;
 
     private int clicCount = 0;
     private int fermeturesCount = 0;
-    private GameObject fenetreInstance;
+    private GameObject FenetreInstance;
     private Coroutine timerPorte;
-    private bool porteVerrouilee = false;
+    private bool porteVerrouillee = false;
     private ImageFenetre imageChoisie = null;
     private bool estAnomalieChoisie = false;
     private int dernierIndex = -1;
 
-    void Start() => AppliquerTexture(0);
+    void Start() => AppliquerTexture(0); //texture de porte avec comportement curseur
 
     void OnMouseEnter()
     {
-        if (!porteVerrouilee && clicCount % 2 == 0)
+        if (!porteVerrouillee && clicCount % 2 == 0)
             AppliquerTexture(1);
     }
 
     void OnMouseExit()
     {
-        if (!porteVerrouilee && clicCount % 2 == 0)
+        if (!porteVerrouillee && clicCount % 2 == 0)
             AppliquerTexture(0);
     }
 
     void OnMouseDown()
     {
-        if (porteVerrouilee || FenetreChoixJoueur.activeSelf) return;
+        if (porteVerrouillee || FenetreChoixJoueur.activeSelf) return;
 
         clicCount++;
 
         if (clicCount % 2 == 1)
         {
             AppliquerTexture(2);
-            fenetreInstance = Instantiate(fenetrePrefab);
+            FenetreInstance = Instantiate(Fenetre);
 
-            GestionFenetre gf = fenetreInstance.GetComponent<GestionFenetre>();
+            GestionFenetre gf = FenetreInstance.GetComponent<GestionFenetre>(); // ici?
 
             if (imageChoisie == null)
             {
@@ -80,11 +80,11 @@ public class GestionPorte : MonoBehaviour
     void FermerPorte()
     {
         AppliquerTexture(0);
-        if (fenetreInstance != null) Destroy(fenetreInstance);
+        if (FenetreInstance != null) Destroy(FenetreInstance);
 
         if (++fermeturesCount >= 2)
         {
-            porteVerrouilee = true;
+            porteVerrouillee = true;
             StartCoroutine(OuvrirChoixApresDelai());
         }
     }
@@ -99,11 +99,11 @@ public class GestionPorte : MonoBehaviour
     {
         if (timerPorte != null) StopCoroutine(timerPorte);
         StopAllCoroutines();
-        if (fenetreInstance != null) Destroy(fenetreInstance);
+        if (FenetreInstance != null) Destroy(FenetreInstance);
 
         clicCount = 0;
         fermeturesCount = 0;
-        porteVerrouilee = false;
+        porteVerrouillee = false;
         imageChoisie = null;
         estAnomalieChoisie = false;
         dernierIndex = -1;

@@ -22,12 +22,13 @@ public class GestionFenetre : MonoBehaviour
 
     [Header("Composants")]
     public Renderer meshRenderer;
+   // public GameObject 
 
     public void Initialiser(ImageFenetre image, bool estAnomalie)
     {
         meshRenderer.material.mainTexture = image.texture;
         GameManager.Instance.anomaliePresente = estAnomalie;
-        Debug.Log(estAnomalie ? "Anomalie présente !" : "Tout est normal !");
+        Debug.Log(estAnomalie ? "Anomalie " : "Normal");
     }
 
     public (ImageFenetre, bool) GetImageAleatoire(ref int dernierIndex)

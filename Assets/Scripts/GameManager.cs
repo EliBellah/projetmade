@@ -10,6 +10,11 @@ public class GameManager : MonoBehaviour
     public int PorteActives = 1;
     public int PorteMax = 6;
 
+    //   [Header("Fenetres")] jsp pq ca marche pas comme les portes, dcp jai fait des prefab variants
+    // public List<GameObject> Fenetre;
+    // public int FenetreActives = 1;
+    // public int FenetreMax = 6;
+
     [Header("Anomalie")]
     public bool anomaliePresente = false;
 
@@ -33,13 +38,13 @@ public class GameManager : MonoBehaviour
         Debug.Log("anomaliePresente = " + anomaliePresente);
         if (!anomaliePresente)
         {
-            Debug.Log("Correct ! Une porte de plus.");
+            Debug.Log("Correct ");
             PorteActives++;
 
             if (PorteActives > PorteMax)
             {
                 PorteActives = PorteMax;
-                Debug.Log("Maximum atteint ! Victoire !");
+                Debug.Log("Maximum atteint");
             }
 
             MettreAJourPorte();
@@ -56,25 +61,25 @@ public class GameManager : MonoBehaviour
         Debug.Log("anomaliePresente = " + anomaliePresente);
         if (anomaliePresente)
         {
-            Debug.Log("Correct ! Anomalie trouvée.");
+            Debug.Log("Anomalie!");
             PorteActives++;
 
             if (PorteActives > PorteMax)
             {
                 PorteActives = PorteMax;
-                Debug.Log("Maximum atteint ! Victoire !");
+                Debug.Log("Maximum atteint ");
             }
 
             MettreAJourPorte();
         }
         else
         {
-            Debug.Log("Mauvais choix ! Pas d'anomalie.");
+            Debug.Log("Mauvais choix ! Anomalie manquée.");
             ResetPorte();
         }
     }
 
-    void ResetPorte()
+    void ResetPorte() // game over si mauvaix choix joueur : retour a une porte
     {
         PorteActives = 1;
         MettreAJourPorte();
@@ -85,7 +90,7 @@ public class GameManager : MonoBehaviour
             if (gestion != null) gestion.ResetPorte();
         }
 
-        Debug.Log("Retour à 1 porte.");
+        Debug.Log("Game over");
     }
 
     void MettreAJourPorte()
